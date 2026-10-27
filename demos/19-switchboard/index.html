@@ -24,7 +24,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
-<link rel="preload" href="pkg/game_bg.wasm?v=dev-6ae12456" as="fetch" type="application/wasm" crossorigin>
+<link rel="preload" href="pkg/game_bg.wasm?v=5037f3d-6ae12d31" as="fetch" type="application/wasm" crossorigin>
 <style>
   @font-face { font-family: 'NR Alegreya'; font-weight: 800; font-display: swap; src: url('../../shared/fonts/alegreya-800.ttf') format('truetype'); }
   @font-face { font-family: 'NR Nunito'; font-weight: 400; font-display: swap; src: url('../../shared/fonts/nunito-400.ttf') format('truetype'); }
@@ -164,7 +164,7 @@
   .card a:hover, .card a:focus-visible { background: rgba(255, 201, 74, .22); outline: none; }
   @media (prefers-reduced-motion: reduce) { .screen, .screen.gone, .stitch i, #nr-bar, .tag-dialog[open] .card, #nr-play.hint { transition: none; animation: none; } }
 </style>
-<script type="module" src="live.js?v=dev-6ae12456"></script>
+<script type="module" src="live.js?v=5037f3d-6ae12d31"></script>
 </head>
 <body>
 <canvas id="lelelilo" tabindex="0" aria-label="Call-in Switchboard: an animation of agents. Bram calls in; agent Mo answers, checks his notes, plays a song and sends a dedication."></canvas>
@@ -238,7 +238,7 @@
 </div>
 
 <script type="module">
-  const BUILD = 'dev-6ae12456';
+  const BUILD = '5037f3d-6ae12d31';
   window.__lelelilo_build = BUILD;
   const $ = id => document.getElementById(id);
   const show = id => { for (const s of ['loading', 'unsupported', 'failed']) $(s).classList.toggle('hidden', s !== id); };

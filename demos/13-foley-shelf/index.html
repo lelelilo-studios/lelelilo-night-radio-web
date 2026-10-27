@@ -24,7 +24,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
-<link rel="preload" href="pkg/game_bg.wasm?v=dev-6ae123b6" as="fetch" type="application/wasm" crossorigin>
+<link rel="preload" href="pkg/game_bg.wasm?v=5037f3d-6ae12d2f" as="fetch" type="application/wasm" crossorigin>
 <style>
   @font-face { font-family: 'NR Alegreya'; font-weight: 800; font-display: swap; src: url('../../shared/fonts/alegreya-800.ttf') format('truetype'); }
   @font-face { font-family: 'NR Nunito'; font-weight: 400; font-display: swap; src: url('../../shared/fonts/nunito-400.ttf') format('truetype'); }
@@ -238,7 +238,7 @@
 </div>
 
 <script type="module">
-  const BUILD = 'dev-6ae123b6';
+  const BUILD = '5037f3d-6ae12d2f';
   window.__lelelilo_build = BUILD;
   const $ = id => document.getElementById(id);
   const show = id => { for (const s of ['loading', 'unsupported', 'failed']) $(s).classList.toggle('hidden', s !== id); };
