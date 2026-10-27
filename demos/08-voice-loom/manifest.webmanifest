@@ -1,0 +1,16 @@
+{
+  "name": "Voice Loom · Night Radio",
+  "short_name": "Voice Loom",
+  "description": "Four written descriptions, three takes each, woven on a loom into new voices.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#0f1c2e",
+  "theme_color": "#0f1c2e",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

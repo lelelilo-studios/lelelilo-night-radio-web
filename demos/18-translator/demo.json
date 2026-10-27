@@ -1,0 +1,27 @@
+{
+ "no": "18",
+ "slug": "18-translator",
+ "title": "Translator's Booth",
+ "feature": "Dubbing",
+ "public": true,
+ "what": "The first minute of the radio play, dubbed into Spanish and Japanese. Dubbing finds the three speakers, translates them and re-voices each in their own voice, keeping the timing.",
+ "inputs": [
+  {
+   "label": "Source",
+   "value": "The Radio-Play Booth scene, first 57 seconds"
+  },
+  {
+   "label": "Languages",
+   "value": "English → Spanish, English → Japanese"
+  },
+  {
+   "label": "Speakers",
+   "value": "3"
+  }
+ ],
+ "endpoint": "POST /v1/dubbing · GET /v1/dubbing/{id} · GET /v1/dubbing/{id}/audio/{lang}",
+ "snippet": "dub = requests.post(\"https://api.elevenlabs.io/v1/dubbing\",\n    headers={\"xi-api-key\": KEY}, files={\"file\": open(\"scene.mp3\", \"rb\")},\n    data={\"target_lang\": \"ja\", \"source_lang\": \"en\", \"num_speakers\": 3}).json()\n# poll GET /v1/dubbing/{id} until \"dubbed\", then:\naudio = requests.get(f\".../v1/dubbing/{dub['dubbing_id']}/audio/ja\", headers=H).content",
+ "credits": 5272,
+ "usd": 0.96,
+ "made": "2026-10-27"
+}

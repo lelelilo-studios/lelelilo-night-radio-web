@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0f1c2e">
+<meta name="color-scheme" content="dark">
+<title>Voice Loom · Night Radio</title>
+<meta name="description" content="Voice Loom: Four written descriptions, three takes each, woven on a loom into new voices. Room 08 of Night Radio, a showcase of voice design made with ElevenLabs.">
+<meta name="author" content="lelelilo.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Night Radio · Lelelilo-Studios">
+<meta property="og:title" content="Voice Loom · Night Radio">
+<meta property="og:description" content="Four written descriptions, three takes each, woven on a loom into new voices.">
+<meta property="og:url" content="https://lelelilo-studios.github.io/lelelilo-night-radio-web/demos/08-voice-loom/">
+<meta property="og:image" content="https://lelelilo-studios.github.io/lelelilo-night-radio-web/thumbs/08-voice-loom.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="750">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Voice Loom">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preload" href="pkg/game_bg.wasm?v=dev-6ae123b3" as="fetch" type="application/wasm" crossorigin>
+<style>
+  @font-face { font-family: 'NR Alegreya'; font-weight: 800; font-display: swap; src: url('../../shared/fonts/alegreya-800.ttf') format('truetype'); }
+  @font-face { font-family: 'NR Nunito'; font-weight: 400; font-display: swap; src: url('../../shared/fonts/nunito-400.ttf') format('truetype'); }
+  @font-face { font-family: 'NR Nunito'; font-weight: 800; font-display: swap; src: url('../../shared/fonts/nunito-800.ttf') format('truetype'); }
+  /* The station's chrome (tag, transport, care tag) is the same in every room; the room's own look is its theme. */
+  :root { --bg: #070d18; --ink: #fff4d6; --muted: #a9b4c8; --accent: #ffc94a; --danger: #ee7b5f;
+    --font-display: 'NR Alegreya', Georgia, serif; --font-body: 'NR Nunito', ui-rounded, system-ui, sans-serif;
+    --nr-midnight: #070d18; --nr-panel: rgba(9, 17, 31, .82); --nr-gold: #ffc94a; --nr-thread: #f0bd52; --nr-brass: #b8863b;
+    --nr-cream: #fff4d6; --nr-cream2: #ffe3a3; --nr-paper: #f7efdc; --nr-ink: #2c2620; --nr-brass-ink: #8a6324; --nr-cyan: #4fd8ff;
+    --needle: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M2 2 L25 23 L27.5 27.5 L23 25 Z' fill='%23fff4d6' stroke='%23070d18' stroke-width='1.2' stroke-linejoin='round'/><ellipse cx='24.6' cy='24.6' rx='0.9' ry='2.2' transform='rotate(-45 24.6 24.6)' fill='%23070d18'/></svg>") 2 2, auto;
+    --needle-hot: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M26 26 C 32 18, 17 31, 31 31' stroke='%23ffc94a' stroke-width='1.8' fill='none' stroke-linecap='round'/><path d='M2 2 L25 23 L27.5 27.5 L23 25 Z' fill='%234fd8ff' stroke='%23fff4d6' stroke-width='1.2' stroke-linejoin='round'/><ellipse cx='24.6' cy='24.6' rx='0.9' ry='2.2' transform='rotate(-45 24.6 24.6)' fill='%23070d18'/></svg>") 2 2, pointer; }
+</style>
+<style>
+/* Voice Loom: the workshop's loom at night, sea-teal thread on midnight. */
+:root {
+  --bg: #0f1c2e;
+  --ink: #fff4d6;
+  --muted: #a9b4c8;
+  --accent: #5cc8c8;
+}
+
+</style>
+<style>
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); overflow: hidden; overscroll-behavior: none; }
+  body { font: 400 16px/1.45 var(--font-body); -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; -webkit-text-size-adjust: 100%; cursor: var(--needle); }
+  a, button, [role='slider'] { cursor: var(--needle-hot); }
+  canvas#lelelilo, canvas#kit-mirror { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; touch-action: none; outline: none; }
+  canvas#kit-mirror { display: none; pointer-events: none; z-index: 1; }
+  #kit-safe { position: fixed; inset: 0; visibility: hidden; pointer-events: none;
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); }
+  #kit-fps { position: fixed; left: 8px; bottom: 8px; z-index: 9; display: none; font: 600 11px ui-monospace, monospace; color: #fff; background: rgba(0,0,0,.6); padding: 3px 6px; border-radius: 4px; pointer-events: none; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Loading and fallback screens */
+  .screen { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; box-sizing: border-box;
+    padding: max(28px, env(safe-area-inset-top)) max(22px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left));
+    background: radial-gradient(120% 70% at 50% 30%, color-mix(in srgb, var(--accent) 10%, var(--bg)) 0%, var(--bg) 70%); text-align: center; transition: opacity .55s ease, visibility 0s; z-index: 6; overflow: auto; }
+  .screen.gone { opacity: 0; pointer-events: none; visibility: hidden; transition: opacity .55s ease, visibility 0s .55s; }
+  .screen.hidden { display: none; }
+  .kicker { font: 800 11px/1 var(--font-body); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .kicker b { color: var(--accent); font-weight: 800; }
+  h1 { margin: 0; font: 800 clamp(34px, 10vw, 64px)/1.02 var(--font-display); letter-spacing: .01em; color: var(--ink); text-wrap: balance; }
+  .tagline { margin: 0; max-width: 26em; color: var(--muted); font-size: 15px; text-wrap: balance; }
+  .stitch { width: min(240px, 62vw); height: 3px; margin-top: 8px; background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--ink) 18%, transparent) 0 8px, transparent 8px 13px); border-radius: 2px; overflow: hidden; }
+  .stitch i { display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg, var(--nr-gold) 0 8px, transparent 8px 13px); transition: width .25s ease; }
+  .status { font: 800 11px var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); min-height: 1em; }
+  .loader-art { width: min(160px, 40vw); height: auto; }
+  .note { max-width: 32em; color: var(--muted); font-size: 14px; line-height: 1.55; user-select: text; -webkit-user-select: text; }
+  .browsers { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 30em; }
+  .browsers a, .btn { color: var(--ink); text-decoration: none; padding: 11px 16px; border-radius: 999px; border: 1.5px solid color-mix(in srgb, var(--nr-gold) 60%, transparent); font: 800 14px var(--font-body); background: var(--nr-panel); }
+  .browsers a:hover, .btn:hover, .browsers a:focus-visible, .btn:focus-visible { border-color: var(--nr-gold); outline: none; box-shadow: 0 0 18px rgba(255, 201, 74, .3); }
+  .help { max-width: 30em; text-align: left; padding: 12px 16px; border: 1.5px dashed color-mix(in srgb, var(--ink) 30%, transparent); border-radius: 10px; font-size: 14px; line-height: 1.5; color: var(--muted); }
+  .help.hidden { display: none; }
+  .help ol { margin: 6px 0 0; padding-left: 20px; }
+  .help b { color: var(--ink); }
+  code { font: 600 13px ui-monospace, monospace; }
+  .err { font: 500 12px/1.5 ui-monospace, monospace; color: var(--danger); white-space: pre-wrap; max-width: min(90vw, 760px); max-height: 32vh; overflow: auto; text-align: left; padding: 12px 14px; border: 1.5px dashed var(--danger); border-radius: 8px; user-select: text; -webkit-user-select: text; }
+  .foot { display: flex; justify-content: center; gap: 18px; font: 800 12px var(--font-body); letter-spacing: .08em; margin-top: 6px; }
+  .foot a { color: var(--muted); text-decoration: none; padding: 10px 6px; }
+  .foot a:hover, .foot a:focus-visible { color: var(--ink); outline: none; }
+  .foot a span { color: var(--nr-gold); }
+  .tracks { display: grid; gap: 10px; width: min(92vw, 460px); text-align: left; }
+  .tracks figure { margin: 0; padding: 10px 12px; border: 1.5px dashed color-mix(in srgb, var(--nr-gold) 40%, transparent); border-radius: 12px; background: var(--nr-panel); }
+  .tracks figcaption { font: 800 11px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--nr-cream2); margin-bottom: 6px; }
+  .tracks audio { width: 100%; height: 34px; }
+  .poster { width: min(92vw, 460px); border-radius: 12px; display: block; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+
+  /* The station tag: back to the dial */
+  #nr-tag { position: fixed; z-index: 4; top: max(12px, env(safe-area-inset-top)); left: max(12px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 13px 0 11px; box-sizing: border-box;
+    font: 800 11px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--nr-cream); text-decoration: none;
+    background: var(--nr-panel); border: 1.5px dashed rgba(255, 201, 74, .55); border-radius: 999px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: opacity .3s ease; }
+  #nr-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--nr-gold); box-shadow: 0 0 0 3px rgba(255, 201, 74, .22), 0 0 10px rgba(255, 201, 74, .6); }
+  #nr-tag:hover, #nr-tag:focus-visible { border-color: var(--nr-gold); outline: none; }
+
+  /* The transport: a brass play button, a stitched line, the time, the care tag and the sound */
+  #nr-bar { position: fixed; z-index: 4; left: 50%; bottom: max(12px, env(safe-area-inset-bottom)); translate: -50% 0; width: min(calc(100vw - 24px), 620px); box-sizing: border-box;
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 10px; padding: 8px 10px 8px 8px;
+    background: var(--nr-panel); border: 1.5px solid rgba(255, 201, 74, .32); border-radius: 999px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .35); transition: opacity .4s ease, translate .4s ease; }
+  #nr-bar.off { opacity: 0; pointer-events: none; translate: -50% 12px; }
+  #nr-bar.quiet { opacity: .38; }
+  #nr-bar.quiet:hover, #nr-bar.quiet:focus-within { opacity: 1; }
+  .nr-round { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; padding: 0; color: var(--nr-cream2);
+    background: rgba(15, 28, 46, .9); border: 1.5px solid rgba(255, 201, 74, .7); box-shadow: 0 0 0 3px rgba(7, 13, 24, .5), 0 0 14px rgba(255, 201, 74, .16); transition: transform .2s ease, box-shadow .2s ease; }
+  .nr-round:hover, .nr-round:focus-visible { transform: scale(1.06); box-shadow: 0 0 0 3px rgba(7, 13, 24, .5), 0 0 22px rgba(255, 201, 74, .4); outline: none; }
+  .nr-round svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  #nr-play { width: 52px; height: 52px; background: radial-gradient(circle at 40% 35%, #e9b75a, #b8863b 70%); color: #2c2014; border-color: #ffe3a3; }
+  #nr-play svg { width: 22px; height: 22px; fill: currentColor; stroke: none; }
+  #nr-play .pause, #nr-play.on .playi { display: none; }
+  #nr-play.on .pause { display: block; }
+  #nr-play.hint { animation: hint 2.2s ease-in-out infinite; }
+  @keyframes hint { 50% { box-shadow: 0 0 0 3px rgba(7, 13, 24, .5), 0 0 0 9px rgba(255, 201, 74, .18), 0 0 30px rgba(255, 201, 74, .55); } }
+  .nr-mid { min-width: 0; display: grid; gap: 5px; }
+  .nr-label { display: flex; justify-content: space-between; gap: 10px; font: 800 10.5px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--nr-cream2); white-space: nowrap; }
+  .nr-label { min-width: 0; overflow: hidden; }
+  .nr-label span:first-child { min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; }
+  .nr-label time { flex: none; }
+  .nr-label time { color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+  #nr-line { position: relative; height: 18px; touch-action: none; }
+  #nr-line::before, #nr-line i { content: ''; position: absolute; left: 0; top: 8px; height: 2px; border-radius: 2px; }
+  #nr-line::before { right: 0; background: repeating-linear-gradient(90deg, rgba(255, 244, 214, .26) 0 7px, transparent 7px 11px); }
+  #nr-line i { width: 0; background: repeating-linear-gradient(90deg, var(--nr-gold) 0 7px, transparent 7px 11px); box-shadow: 0 0 8px rgba(255, 201, 74, .5); }
+  #nr-line b { position: absolute; top: 3px; width: 12px; height: 12px; margin-left: -6px; left: 0; border-radius: 50%; background: radial-gradient(circle, #fff4d6 0 2px, #ffc94a 2.5px); box-shadow: 0 0 10px rgba(255, 201, 74, .7); }
+  #nr-line u { position: absolute; top: 4px; width: 2px; height: 10px; margin-left: -1px; background: rgba(79, 216, 255, .55); border-radius: 1px; text-decoration: none; }
+  #nr-sound .off-i, #nr-sound.muted .on-i { display: none; }
+  #nr-sound.muted .off-i { display: block; }
+  @media (max-width: 420px) { #nr-bar { gap: 8px; } .nr-round { width: 40px; height: 40px; } #nr-play { width: 48px; height: 48px; } }
+
+  /* The care tag: what this room is, exactly what went in, and what it cost */
+  .tag-dialog { border: 0; padding: 0; margin: auto; background: transparent; max-width: none; max-height: none; overflow: visible; color: inherit; }
+  .tag-dialog::backdrop { background: rgba(4, 8, 15, .66); backdrop-filter: blur(3px); }
+  .tag-dialog[open] .card { animation: tag-in .45s cubic-bezier(.2, 1.3, .4, 1); }
+  @keyframes tag-in { from { opacity: 0; transform: translateY(24px) rotate(-3deg) scale(.94); } }
+  .card { position: relative; width: min(94vw, 560px); max-height: min(88vh, 900px); max-height: min(88dvh, 900px); overflow: auto; overscroll-behavior: contain; box-sizing: border-box;
+    padding: 36px 24px 22px; color: var(--nr-ink); background: var(--nr-paper); border-radius: 14px 14px 22px 22px; user-select: text; -webkit-user-select: text; cursor: auto;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, .55), inset 0 0 0 1.5px rgba(138, 99, 36, .3); font: 15px/1.5 var(--font-body); }
+  .card::before { content: ''; position: absolute; left: 50%; top: 12px; width: 14px; height: 14px; translate: -50% 0; border-radius: 50%; background: radial-gradient(circle, #f5eedc 0 3px, #c28c40 3.5px 6px, #7d5a2c 6.5px); }
+  .card::after { content: ''; position: absolute; inset: 8px; border: 1.5px dashed rgba(138, 99, 36, .35); border-radius: 10px 10px 16px 16px; pointer-events: none; }
+  .card .close { position: absolute; right: 14px; top: 12px; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--nr-brass-ink); display: grid; place-items: center; z-index: 1; }
+  .card .close:hover, .card .close:focus-visible { background: rgba(138, 99, 36, .12); outline: none; }
+  .card .close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+  .card .law { margin: 4px 0 10px; text-align: center; font-weight: 800; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--nr-brass-ink); }
+  .card h2 { margin: 6px 0 2px; font: 800 30px/1.05 var(--font-display); color: var(--nr-ink); }
+  .card .feature { margin: 0 0 10px; font-weight: 800; color: var(--nr-brass-ink); }
+  .card .what { margin: 0 0 14px; color: #4a4034; }
+  .card .cost { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0 0 16px; padding: 10px 14px; border-radius: 10px; background: rgba(184, 134, 59, .14); }
+  .card .cost b { font: 800 26px/1 var(--font-display); color: var(--nr-ink); }
+  .card .cost small { color: #6a5d4c; font-size: 12.5px; }
+  .card h3 { margin: 16px 0 6px; font: 800 10.5px/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--nr-brass-ink); }
+  .card dl { margin: 0; display: grid; grid-template-columns: minmax(84px, max-content) 1fr; column-gap: 14px; row-gap: 8px; border-top: 1.5px dashed rgba(138, 99, 36, .45); padding-top: 12px; }
+  .card dt { font-size: 10.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--nr-brass-ink); padding-top: 3px; overflow-wrap: anywhere; }
+  .card dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; }
+  .card pre { margin: 0; padding: 12px 14px; border-radius: 10px; background: #2c2620; color: #ffe9b8; font: 12px/1.55 ui-monospace, 'SF Mono', Menlo, monospace; overflow: auto; white-space: pre; }
+  .card .endpoint { font: 700 12.5px ui-monospace, monospace; color: #5a4e40; overflow-wrap: anywhere; }
+  .card .links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 16px; padding-top: 12px; border-top: 1.5px dashed rgba(138, 99, 36, .45); font-weight: 800; font-size: 14px; }
+  .card a { color: var(--nr-ink); text-decoration: underline; text-decoration-style: dotted; text-decoration-color: var(--nr-brass-ink); text-decoration-thickness: 2px; text-underline-offset: 3px; border-radius: 4px; }
+  .card a:hover, .card a:focus-visible { background: rgba(255, 201, 74, .22); outline: none; }
+  @media (prefers-reduced-motion: reduce) { .screen, .screen.gone, .stitch i, #nr-bar, .tag-dialog[open] .card, #nr-play.hint { transition: none; animation: none; } }
+</style>
+
+</head>
+<body>
+<canvas id="lelelilo" tabindex="0" aria-label="Voice Loom: an animation of voice design. Four written descriptions, three takes each, woven on a loom into new voices."></canvas>
+<canvas id="kit-mirror" aria-hidden="true"></canvas>
+<div id="kit-safe" aria-hidden="true"></div>
+<div id="kit-fps" aria-hidden="true"></div>
+<a id="nr-tag" href="../../#08-voice-loom" aria-label="Back to Night Radio (room 08)">Night Radio · 08</a>
+
+<div id="nr-bar" class="off" role="group" aria-label="Playback">
+  <button class="nr-round" id="nr-play" type="button" aria-label="Play">
+    <svg class="playi" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+    <svg class="pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5.5" width="4" height="13" rx="1.2"/><rect x="13.5" y="5.5" width="4" height="13" rx="1.2"/></svg>
+  </button>
+  <div class="nr-mid">
+    <div class="nr-label"><span>Voice Design</span><time id="nr-time">0:00 / 0:00</time></div>
+    <div id="nr-line" role="slider" tabindex="0" aria-label="Position" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><i></i><b></b></div>
+  </div>
+  <button class="nr-round" id="nr-info" type="button" aria-label="What is this room? (the care tag)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5 9.5 4H19a1 1 0 0 1 1 1v9.5L14.5 20a1.5 1.5 0 0 1-2.1 0L4 11.6a1.5 1.5 0 0 1 0-2.1z"/><circle cx="15.5" cy="8.5" r="1.4"/></svg>
+  </button>
+  <button class="nr-round" id="nr-sound" type="button" aria-label="Sound on or off">
+    <svg class="on-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+    <svg class="off-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5m0-5-5 5"/></svg>
+  </button>
+</div>
+
+<dialog class="tag-dialog" id="care" aria-labelledby="care-title">
+  <div class="card">
+    <button class="close" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <p class="law">Room 08 · do not remove this tag</p>
+    <h2 id="care-title">Voice Loom</h2>
+    <p class="feature">Voice Design</p>
+    <div id="care-body"><p class="what">Four written descriptions, three takes each, woven on a loom into new voices.</p></div>
+    <div class="links"><a href="../../#08-voice-loom">Back to Night Radio</a><a href="https://lelelilo.com/?ref=lelelilo-night-radio" target="_blank" rel="noopener">lelelilo.com</a></div>
+  </div>
+</dialog>
+
+<div class="screen" id="loading" role="status" aria-live="polite">
+  
+  <div class="kicker">Night Radio · room <b>08</b></div>
+  <h1>Voice Loom</h1>
+  <p class="tagline">Four written descriptions, three takes each, woven on a loom into new voices.</p>
+  <div class="stitch" aria-hidden="true"><i id="bar"></i></div>
+  <div class="status" id="status">Warming the valves…</div>
+  <div class="foot"><a href="../../">Night Radio</a><a href="https://lelelilo.com/?ref=lelelilo-night-radio" target="_blank" rel="noopener">lelelilo<span>.com</span></a></div>
+</div>
+
+<div class="screen hidden" id="unsupported">
+  <div class="kicker">Night Radio · room <b>08</b> · Voice Design</div>
+  <h1>Voice Loom</h1>
+  <p class="note">This room's animation draws with <b>WebGPU</b>, which this browser doesn't offer yet. The sound is all here, though:</p>
+  <div class="tracks" id="tracks"></div>
+  <p class="note">For the animation, open it in one of these:</p>
+  <div class="browsers">
+    <a href="https://www.google.com/chrome/" rel="noopener">Chrome · Android &amp; desktop</a>
+    <a href="https://www.apple.com/safari/" rel="noopener">Safari 26+ · iPhone, iPad, Mac</a>
+    <a href="https://www.microsoft.com/edge" rel="noopener">Edge</a>
+  </div>
+  <div class="help hidden" id="linux-help"></div>
+  <p class="note" id="why" style="font-size:12px"></p>
+  <div class="browsers"><button class="btn" type="button" data-care>The care tag</button></div>
+  <div class="foot"><a href="../../">Night Radio</a><a href="https://lelelilo.com/?ref=lelelilo-night-radio" target="_blank" rel="noopener">lelelilo<span>.com</span></a></div>
+</div>
+
+<div class="screen hidden" id="failed">
+  <div class="kicker">Night Radio · room <b>08</b></div>
+  <h1>Off the air</h1>
+  <p class="note">Voice Loom couldn't start. Starting it again usually helps.</p>
+  <div class="browsers"><a href="." id="again" class="btn">Try again</a><a href="../../" class="btn">Back to the dial</a></div>
+  <div class="err" id="errtext"></div>
+</div>
+
+<script type="module">
+  const BUILD = 'dev-6ae123b3';
+  window.__lelelilo_build = BUILD;
+  const $ = id => document.getElementById(id);
+  const show = id => { for (const s of ['loading', 'unsupported', 'failed']) $(s).classList.toggle('hidden', s !== id); };
+  const setProgress = k => { $('bar').style.width = `${Math.max(0, Math.min(1, k)) * 100}%`; };
+  let failed = false;
+  const fail = e => { if (failed) return; failed = true; console.error(e); $('errtext').textContent = String(e && e.message || e); show('failed'); $('nr-bar').classList.add('off'); };
+  $('again').addEventListener('click', e => { e.preventDefault(); location.reload(); });
+  if (window.self !== window.top) { $('nr-tag').style.display = 'none'; }
+  window.__kitTag = on => { $('nr-tag').style.opacity = on ? '1' : '.55'; };
+
+  // ---- The care tag: demo.json says what went in and what it cost
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const careLoaded = fetch(`demo.json?v=${BUILD}`).then(r => r.ok ? r.json() : null).then(d => {
+    if (!d) return;
+    const rows = (list) => (list || []).map(x => `<dt>${esc(x.label)}</dt><dd>${esc(x.value)}</dd>`).join('');
+    const credits = Number(d.credits || 0);
+    $('care-body').innerHTML = `
+      <p class="what">${esc(d.what)}</p>
+      <p class="cost"><b>${credits.toLocaleString('en')} credits</b><span>≈ $${Number(d.usd || 0).toFixed(2)}</span>
+        <small>measured on a Creator plan ($22 a month for 121,000 credits), ${esc(d.made)}</small></p>
+      <h3>What went in</h3><dl>${rows(d.inputs)}</dl>
+      ${d.results && d.results.length ? `<h3>What came back</h3><dl>${rows(d.results)}</dl>` : ''}
+      <h3>The call</h3><p class="endpoint">${esc(d.endpoint)}</p>
+      ${d.snippet ? `<pre><code>${esc(d.snippet)}</code></pre>` : ''}`;
+  }).catch(() => {});
+  const care = $('care');
+  const openCare = () => { if (!care.open) care.showModal(); };
+  $('nr-info').addEventListener('click', openCare);
+  for (const b of document.querySelectorAll('[data-care]')) b.addEventListener('click', openCare);
+  care.addEventListener('click', e => { if (e.target === care || e.target.closest('[data-close]')) care.close(); });
+
+  // ---- The transport bar, wired to the game's main deck through window.__nr
+  const fmt = s => { s = Math.max(0, s || 0); return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`; };
+  const line = $('nr-line'), play = $('nr-play');
+  let dragging = false, ticksFor = -1, quietTimer = 0, lastState = null, touched = false;
+  function wake() { $('nr-bar').classList.remove('quiet'); clearTimeout(quietTimer); quietTimer = setTimeout(() => { if (lastState && lastState.playing && !dragging) $('nr-bar').classList.add('quiet'); }, 3500); }
+  addEventListener('pointermove', wake, { passive: true });
+  addEventListener('pointerdown', wake, { passive: true });
+  function seekAt(x) {
+    if (!window.__nr || !lastState) return;
+    const r = line.getBoundingClientRect();
+    window.__nr.seek(Math.max(0, Math.min(1, (x - r.left) / r.width)) * lastState.dur);
+  }
+  line.addEventListener('pointerdown', e => { dragging = true; line.setPointerCapture(e.pointerId); seekAt(e.clientX); });
+  line.addEventListener('pointermove', e => { if (dragging) seekAt(e.clientX); });
+  line.addEventListener('pointerup', () => { dragging = false; });
+  line.addEventListener('keydown', e => {
+    if (!window.__nr || !lastState) return;
+    if (e.key === 'ArrowRight') { window.__nr.seek(Math.min(lastState.dur, lastState.t + 5)); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { window.__nr.seek(Math.max(0, lastState.t - 5)); e.preventDefault(); }
+  });
+  play.addEventListener('click', () => { touched = true; play.classList.remove('hint'); window.__nr && window.__nr.toggle(); });
+  $('nr-sound').addEventListener('click', () => { window.__nr && lastState && window.__nr.mute(!lastState.muted); });
+  addEventListener('keydown', e => {
+    if (care.open || e.target.closest?.('button, [role=slider]')) return;
+    if (e.code === 'KeyK' || (e.code === 'Space' && e.target === document.body)) { window.__nr && window.__nr.toggle(); touched = true; e.preventDefault(); }
+  });
+  function frame() {
+    const s = window.__nr && window.__nr.state();
+    if (s && typeof s.t === 'number') {
+      if (!lastState) $('nr-bar').classList.remove('off');
+      lastState = s;
+      const k = s.dur > 0 ? s.t / s.dur : 0;
+      line.querySelector('i').style.width = `${k * 100}%`;
+      line.querySelector('b').style.left = `${k * 100}%`;
+      line.setAttribute('aria-valuemax', String(Math.round(s.dur))); line.setAttribute('aria-valuenow', String(Math.round(s.t)));
+      $('nr-time').textContent = `${fmt(s.t)} / ${fmt(s.dur)}`;
+      play.classList.toggle('on', !!s.playing);
+      play.setAttribute('aria-label', s.playing ? 'Pause' : 'Play');
+      $('nr-sound').classList.toggle('muted', !!s.muted);
+      if (s.playing) touched = true;
+      play.classList.toggle('hint', !touched);
+      if (ticksFor !== s.tracks && s.spans && s.spans.length > 1 && s.dur > 0) {
+        ticksFor = s.tracks;
+        for (const u of line.querySelectorAll('u')) u.remove();
+        for (const [a] of s.spans.slice(1)) { if (a > 0.01 && a < s.dur) { const u = document.createElement('u'); u.style.left = `${a / s.dur * 100}%`; line.appendChild(u); } }
+      }
+      if (!s.playing) $('nr-bar').classList.remove('quiet');
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ---- Boot: WebGPU or the fallback
+  const LINUX = /Linux/.test(navigator.userAgent) && !/Android/.test(navigator.userAgent);
+  const linuxHelp = `<b>On Linux</b>, WebGPU is still switched off by default. In Chrome, Chromium, Brave or Edge:
+    <ol><li>open <code>chrome://flags</code>, set <b>Unsafe WebGPU Support</b> to Enabled,</li>
+    <li>set <b>Vulkan</b> to Enabled,</li><li>relaunch the browser.</li></ol>`;
+  async function hasWebGPU() {
+    if (!navigator.gpu) return 'This browser has no WebGPU.';
+    for (let i = 0; i < 3; i++) {
+      try { const a = await navigator.gpu.requestAdapter(); if (a) return null; }
+      catch (e) { if (i === 2) return 'WebGPU could not start: ' + e.message; }
+      await new Promise(r => setTimeout(r, 250 * (i + 1)));
+    }
+    return 'WebGPU is here but found no graphics adapter it can use.';
+  }
+  async function fallbackTracks() {
+    try {
+      const poster = new Image(); poster.className = 'poster'; poster.alt = ''; poster.src = `../../posters/08-voice-loom.jpg`;
+      poster.onerror = () => poster.remove();
+      $('tracks').before(poster);
+      const tl = await (await fetch(`timeline.json?v=${BUILD}`)).json();
+      for (const t of tl.tracks || []) {
+        const f = document.createElement('figure');
+        f.innerHTML = `<figcaption>${esc(t.name)}</figcaption><audio controls preload="none" src="${esc(t.file)}"></audio>`;
+        $('tracks').appendChild(f);
+      }
+    } catch (e) { /* the note is enough */ }
+  }
+  async function fetchWasm(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Could not download the room (${res.status})`);
+    const total = +res.headers.get('content-length') || 0, reader = res.body.getReader(), parts = [];
+    let got = 0;
+    for (;;) {
+      const { done, value } = await reader.read(); if (done) break;
+      parts.push(value); got += value.length;
+      setProgress(total ? got / total * 0.6 : Math.min(0.6, got / 2.5e6));
+    }
+    return new Response(new Blob(parts), { headers: { 'Content-Type': 'application/wasm' } });
+  }
+  (async () => {
+    const why = await hasWebGPU();
+    if (why) {
+      $('why').textContent = why;
+      if (LINUX) { $('linux-help').innerHTML = linuxHelp; $('linux-help').classList.remove('hidden'); }
+      show('unsupported'); fallbackTracks(); return;
+    }
+    try {
+      addEventListener('lelelilo-error', e => fail(e.detail));
+      addEventListener('kit-progress', e => { setProgress(0.6 + 0.4 * e.detail); if (e.detail > 0.93) $('status').textContent = 'Tuning in…'; });
+      addEventListener('lelelilo-ready', () => {
+        setProgress(1); $('status').textContent = 'On the air';
+        setTimeout(() => $('loading').classList.add('gone'), 180);
+        if (window.__nr) requestAnimationFrame(frame);
+        $('lelelilo').focus({ preventScroll: true });
+      }, { once: true });
+      const [{ default: init }, wasm] = await Promise.all([import(`./pkg/game.js?v=${BUILD}`), fetchWasm(`./pkg/game_bg.wasm?v=${BUILD}`)]);
+      $('status').textContent = 'Fetching the tapes…';
+      await init({ module_or_path: wasm });
+    } catch (e) { fail(e); }
+  })();
+</script>
+</body>
+</html>

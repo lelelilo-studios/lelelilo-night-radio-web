@@ -1,0 +1,35 @@
+{
+ "no": "05",
+ "slug": "05-mixing-desk",
+ "title": "Mixing Desk",
+ "feature": "Text to Speech · settings and pronunciation",
+ "public": true,
+ "what": "The same line with the knobs turned: speed, stability (steady or loose) and style (how much it performs). Then invented names, read as written and then with a pronunciation dictionary.",
+ "inputs": [
+  {
+   "label": "Voice",
+   "value": "Daniel (built-in)"
+  },
+  {
+   "label": "Model",
+   "value": "Multilingual v2"
+  },
+  {
+   "label": "Line",
+   "value": "Night Radio, where the music is soft, the coffee is strong, and nobody is in a hurry."
+  },
+  {
+   "label": "Names",
+   "value": "Tonight's guests: Wroxwyn Qyll and the band NRXII, live from Lelelilo Isle."
+  },
+  {
+   "label": "Dictionary",
+   "value": "Wroxwyn → Rocks-win; Qyll → Quill; NRXII → Night Radio Twelve; Lelelilo → leh-leh-lee-low"
+  }
+ ],
+ "endpoint": "POST /v1/text-to-speech/{voice_id} · POST /v1/pronunciation-dictionaries/add-from-rules",
+ "snippet": "requests.post(f\"https://api.elevenlabs.io/v1/text-to-speech/{voice}\",\n    headers={\"xi-api-key\": KEY},\n    json={\"text\": LINE, \"model_id\": \"eleven_multilingual_v2\",\n          \"voice_settings\": {\"stability\": 0.0, \"style\": 0.9, \"speed\": 1.2},\n          \"pronunciation_dictionary_locators\": [{\"pronunciation_dictionary_id\": dic_id,\n                                                 \"version_id\": version}]})",
+ "credits": 298,
+ "usd": 0.05,
+ "made": "2026-10-27"
+}

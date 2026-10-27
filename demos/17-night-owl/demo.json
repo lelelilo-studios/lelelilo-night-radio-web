@@ -1,0 +1,27 @@
+{
+ "no": "17",
+ "slug": "17-night-owl",
+ "title": "Night-Owl Microphone",
+ "feature": "Speech to Text · Realtime",
+ "public": true,
+ "what": "A caller's message streamed in real time, as if from a microphone. Partial guesses arrive while she is still talking and settle into final text: this replay keeps the exact moment each one came in.",
+ "inputs": [
+  {
+   "label": "Model",
+   "value": "Scribe v2 Realtime (WebSocket, 16 kHz PCM, 100 ms chunks)"
+  },
+  {
+   "label": "Caller",
+   "value": "Sarah (built-in), voiced with Eleven v4"
+  },
+  {
+   "label": "What she says",
+   "value": "[sleepy] Hi... um, hi, Night Radio. I've never called a radio show before. I'm Sofía, I'm a night nurse, and I just finished my shift. [sighs] It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight. [laughs softly] Okay. Thank you. Bye. Oh, wait. Thank you!"
+  }
+ ],
+ "endpoint": "wss://api.elevenlabs.io/v1/speech-to-text/realtime · POST /v1/single-use-token/realtime_scribe",
+ "snippet": "token = requests.post(\"https://api.elevenlabs.io/v1/single-use-token/realtime_scribe\",\n    headers={\"xi-api-key\": KEY}).json()[\"token\"]\n# in the browser: no key, only the one-time token\nws = new WebSocket(`wss://api.elevenlabs.io/v1/speech-to-text/realtime?model_id=scribe_v2_realtime&token=${token}`)\nws.send(JSON.stringify({message_type: \"input_audio_chunk\", audio_base_64: chunk, sample_rate: 16000}))",
+ "credits": 183,
+ "usd": 0.03,
+ "made": "2026-10-27"
+}

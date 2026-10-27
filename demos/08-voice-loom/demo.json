@@ -1,0 +1,35 @@
+{
+ "no": "08",
+ "slug": "08-voice-loom",
+ "title": "Voice Loom",
+ "feature": "Voice Design",
+ "public": true,
+ "what": "New voices from a written description alone. Each description gives three takes to choose from; the first takes of Bram and Tik were saved and act in later rooms.",
+ "inputs": [
+  {
+   "label": "Model",
+   "value": "Voice Design v3 (eleven_ttv_v3)"
+  },
+  {
+   "label": "Bram",
+   "value": "An elderly lighthouse keeper in his seventies with a gravelly, salt-worn voice. Slow, kind and a little grumpy, with a soft Scottish lilt. Recorded close, warm and clear."
+  },
+  {
+   "label": "Tik",
+   "value": "A tiny, curious wind-up robot with a bright, slightly metallic and buzzy voice. Speaks fast and excitedly, like a child seeing snow for the first time."
+  },
+  {
+   "label": "Velvet",
+   "value": "A breathy, low female late-night jazz announcer. Smooth, unhurried and intimate, as if smiling into a vintage ribbon microphone."
+  },
+  {
+   "label": "Nimbus",
+   "value": "A sleepy giant made of clouds: an extremely deep, soft, slow voice, rumbling like distant thunder, with long yawns between words."
+  }
+ ],
+ "endpoint": "POST /v1/text-to-voice/design · POST /v1/text-to-voice",
+ "snippet": "d = requests.post(\"https://api.elevenlabs.io/v1/text-to-voice/design\",\n    headers={\"xi-api-key\": KEY},\n    json={\"voice_description\": \"An elderly lighthouse keeper with a gravelly voice…\",\n          \"model_id\": \"eleven_ttv_v3\", \"text\": SAMPLE}).json()\ntakes = d[\"previews\"]  # three takes: audio_base_64 + generated_voice_id",
+ "credits": 599,
+ "usd": 0.11,
+ "made": "2026-10-27"
+}

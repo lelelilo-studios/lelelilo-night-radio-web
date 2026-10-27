@@ -1,0 +1,31 @@
+{
+ "no": "12",
+ "slug": "12-sieve",
+ "title": "Sieve",
+ "feature": "Voice Isolator",
+ "public": true,
+ "what": "A traffic report drowned in café chatter and street noise, and what Voice Isolator pulled back out of it. The noise beds were made with Sound Effects.",
+ "inputs": [
+  {
+   "label": "Voice",
+   "value": "Daniel (built-in), Eleven v4"
+  },
+  {
+   "label": "Report",
+   "value": "Good evening, here's the island traffic report. The night ferry is running ten minutes late, because a seal is sleeping on the ramp. The hill road is clear, apart from one very slow tortoise near the bakery. And at the lighthouse, Bram reports one flickering lamp, now fixed with music. Drive gently tonight."
+  },
+  {
+   "label": "Noise · cafe",
+   "value": "A busy café: loud chatter, clinking cups and an espresso machine hissing"
+  },
+  {
+   "label": "Noise · traffic",
+   "value": "Heavy city traffic: car horns, an engine revving and a bus passing close"
+  }
+ ],
+ "endpoint": "POST /v1/audio-isolation",
+ "snippet": "clean = requests.post(\"https://api.elevenlabs.io/v1/audio-isolation\",\n    headers={\"xi-api-key\": KEY},\n    files={\"audio\": open(\"noisy.mp3\", \"rb\")}).content",
+ "credits": 620,
+ "usd": 0.11,
+ "made": "2026-10-27"
+}

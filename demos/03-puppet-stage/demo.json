@@ -1,0 +1,55 @@
+{
+ "no": "03",
+ "slug": "03-puppet-stage",
+ "title": "Puppet Stage",
+ "feature": "Text to Speech · audio tags",
+ "public": true,
+ "what": "One voice, eight performances. Tags in square brackets tell the model how to act a line: whisper, laugh, sigh, shout, sing, or put on an accent.",
+ "inputs": [
+  {
+   "label": "Voice",
+   "value": "Laura (built-in)"
+  },
+  {
+   "label": "Model",
+   "value": "Eleven v4"
+  },
+  {
+   "label": "[whispers]",
+   "value": "[whispers] Okay. Everyone is asleep. Let's keep this between us."
+  },
+  {
+   "label": "[laughs]",
+   "value": "[laughs] No, no, the pillow fight was not my idea! [laughs harder] Okay, it was."
+  },
+  {
+   "label": "[sighs]",
+   "value": "[sighs] Another night, another missing slipper."
+  },
+  {
+   "label": "[sarcastic]",
+   "value": "[sarcastic] Oh, wonderful. The radio tower is singing again. Just lovely."
+  },
+  {
+   "label": "[shouting]",
+   "value": "[shouting] Who left the moon on the roof?!"
+  },
+  {
+   "label": "[sings]",
+   "value": "[sings] Close your eyes, the night is long, and the kettle hums a little song."
+  },
+  {
+   "label": "[excited]",
+   "value": "[excited] Caller number nine, you just won a lifetime supply of feathers!"
+  },
+  {
+   "label": "[accent]",
+   "value": "[strong French accent] Bonsoir! You are listening to Night Radio, mon ami."
+  }
+ ],
+ "endpoint": "POST /v1/text-to-speech/{voice_id}",
+ "snippet": "requests.post(f\"https://api.elevenlabs.io/v1/text-to-speech/{voice}\",\n    headers={\"xi-api-key\": KEY},\n    json={\"model_id\": \"eleven_v4\",\n          \"text\": \"[whispers] Okay. Everyone is asleep. Let's keep this between us.\"})",
+ "credits": 233,
+ "usd": 0.04,
+ "made": "2026-10-27"
+}

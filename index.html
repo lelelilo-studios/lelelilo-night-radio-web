@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070d18">
+<meta name="color-scheme" content="dark">
+<title>Night Radio · Lelelilo-Studios</title>
+<meta name="description" content="A plush-pillow radio station at midnight: eighteen rooms, each one a thing ElevenLabs' voice AI can do, with the real sound it made, an animation, and exactly what it cost.">
+<meta name="author" content="lelelilo.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lelelilo-Studios">
+<meta property="og:title" content="Night Radio">
+<meta property="og:description" content="Eighteen rooms of a plush-pillow radio station at midnight, each one a thing ElevenLabs can do.">
+<meta property="og:url" content="https://lelelilo-studios.github.io/lelelilo-night-radio-web/">
+<meta property="og:image" content="https://lelelilo-studios.github.io/lelelilo-night-radio-web/thumbs/index.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="750">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/alegreya-800.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/nunito-400.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<a class="skip" href="#rooms">Skip to the rooms</a>
+
+<div class="sky" aria-hidden="true">
+  <svg class="cloud c1" viewBox="0 0 220 90"><g><circle cx="50" cy="60" r="30"/><circle cx="90" cy="42" r="38"/><circle cx="140" cy="52" r="32"/><circle cx="180" cy="64" r="22"/><rect x="40" y="58" width="150" height="30" rx="15"/></g></svg>
+  <svg class="cloud c2" viewBox="0 0 220 90"><g><circle cx="40" cy="62" r="24"/><circle cx="80" cy="46" r="34"/><circle cx="128" cy="40" r="40"/><circle cx="176" cy="60" r="26"/><rect x="30" y="58" width="160" height="30" rx="15"/></g></svg>
+  <svg class="cloud c3" viewBox="0 0 220 90"><g><circle cx="60" cy="58" r="28"/><circle cx="104" cy="44" r="36"/><circle cx="150" cy="58" r="26"/><rect x="40" y="56" width="130" height="30" rx="15"/></g></svg>
+  <canvas id="motes"></canvas>
+</div>
+
+<header class="top">
+  <a class="studio" href="https://lelelilo.com/?ref=lelelilo-night-radio" aria-label="Lelelilo-Studios, lelelilo.com">
+    <img src="assets/lelelilo-lockup-horizontal.svg" alt="Lelelilo-Studios · Lelelilo.com" width="187" height="40">
+  </a>
+  <div class="round">
+    <button type="button" id="sound-btn" aria-pressed="false" aria-label="Sound: off. Turn on to hear each station as you tune." title="Sound (tuning previews)">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="on-i"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="off-i"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5m0-5-5 5"/></svg>
+    </button>
+    <button type="button" id="about-btn" aria-label="About Night Radio" title="Care instructions">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5 9.5 4H19a1 1 0 0 1 1 1v9.5L14.5 20a1.5 1.5 0 0 1-2.1 0L4 11.6a1.5 1.5 0 0 1 0-2.1z"/><circle cx="15.5" cy="8.5" r="1.4"/></svg>
+    </button>
+    <button type="button" id="intro-btn" aria-label="Play the studio intro again" title="Play the intro again">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="title">
+    <div class="hero-text">
+      <p class="kicker"><span class="dot" aria-hidden="true"></span><span>On the air after midnight</span></p>
+      <h1 id="title">Night <em>Radio</em></h1>
+      <p class="lede">A plush-pillow radio station on a little island. <span id="room-count">Eighteen</span> rooms, each one a thing
+        <b>ElevenLabs</b>' voice AI can do: the real sound it made, an animation to watch it by, and exactly what it cost.</p>
+    </div>
+
+    <div class="studio-set">
+      <div class="radio" id="radio">
+        <figure class="host" aria-hidden="true">
+          <svg viewBox="0 0 200 170" class="host-svg">
+            <defs>
+              <radialGradient id="h-felt" cx="46%" cy="40%" r="70%"><stop offset="0" stop-color="#fbe9c8"/><stop offset=".62" stop-color="#efd2a4"/><stop offset="1" stop-color="#d9b57e"/></radialGradient>
+              <linearGradient id="h-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6fa8"/><stop offset="1" stop-color="#3b4d80"/></linearGradient>
+            </defs>
+            <g class="host-body">
+              <ellipse cx="100" cy="160" rx="70" ry="8" fill="#000" opacity=".25"/>
+              <path class="pillow" d="M30 40 C 70 54, 130 54, 170 40 C 158 84, 158 122, 170 156 C 130 146, 70 146, 30 156 C 42 122, 42 84, 30 40 Z" fill="url(#h-felt)" stroke="#e2c18c" stroke-width="7" stroke-linejoin="round"/>
+              <path d="M46 56 C 78 66, 122 66, 154 56 C 146 92, 146 120, 154 144 C 122 136, 78 136, 46 144 C 54 120, 54 92, 46 56 Z" fill="none" stroke="#b48f5c" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="6 5"/>
+              <!-- headphones -->
+              <path d="M44 74 C 44 10, 156 10, 156 74" fill="none" stroke="url(#h-band)" stroke-width="9" stroke-linecap="round"/>
+              <rect x="30" y="66" width="24" height="36" rx="10" fill="#4a5e98"/><rect x="146" y="66" width="24" height="36" rx="10" fill="#4a5e98"/>
+              <rect x="34" y="72" width="10" height="24" rx="5" fill="#ffc94a" class="ear-light"/><rect x="156" y="72" width="10" height="24" rx="5" fill="#ffc94a" class="ear-light"/>
+              <!-- face -->
+              <g class="eyes">
+                <ellipse cx="80" cy="96" rx="7.5" ry="9.5" fill="#1a110b"/><circle cx="77.5" cy="92" r="2.6" fill="#fff"/>
+                <ellipse cx="120" cy="96" rx="7.5" ry="9.5" fill="#1a110b"/><circle cx="117.5" cy="92" r="2.6" fill="#fff"/>
+              </g>
+              <g class="sleepy" opacity="0"><path d="M72 97 q8 6 16 0M112 97 q8 6 16 0" fill="none" stroke="#1a110b" stroke-width="3" stroke-linecap="round"/></g>
+              <circle cx="66" cy="112" r="7" fill="#ff9a8a" opacity=".45"/><circle cx="134" cy="112" r="7" fill="#ff9a8a" opacity=".45"/>
+              <path d="M90 114 Q100 124 110 114" fill="none" stroke="#1a110b" stroke-width="4" stroke-linecap="round"/>
+              <g class="zzz" opacity="0" fill="#ffe3a3" font-family="Alegreya, serif" font-weight="800"><text x="150" y="40" font-size="16">z</text><text x="162" y="26" font-size="12">z</text></g>
+            </g>
+          </svg>
+        </figure>
+
+        <div class="cabinet">
+          <div class="antenna" aria-hidden="true"><i></i></div>
+          <a class="screen" id="screen" href="#" aria-label="Open the room">
+            <img id="screen-img" alt="" decoding="async">
+            <video id="screen-clip" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="glass" aria-hidden="true"></span>
+            <span class="screen-label" id="screen-label"></span>
+            <span class="static" aria-hidden="true"></span>
+          </a>
+          <div class="dial">
+            <button type="button" class="nudge" id="prev" aria-label="Previous station"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <div class="band" id="band" tabindex="0" role="listbox" aria-label="Stations: swipe, scroll or use the arrow keys to tune">
+              <div class="band-inner" id="band-inner"></div>
+            </div>
+            <div class="needle" aria-hidden="true"></div>
+            <button type="button" class="nudge" id="next" aria-label="Next station"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <div class="controls" aria-hidden="true">
+            <span class="knob" id="knob"><i></i></span>
+            <span class="grille"></span>
+            <span class="eye" id="eye"></span>
+            <span class="grille"></span>
+            <span class="knob small"><i></i></span>
+          </div>
+        </div>
+        <div class="feet" aria-hidden="true"><i></i><i></i></div>
+      </div>
+
+      <aside class="hang" aria-live="polite">
+        <span class="string" aria-hidden="true"></span>
+        <article class="tag" id="now">
+          <p class="law"><span id="now-no"></span> · <span id="now-freq"></span> FM</p>
+          <h2 id="now-title"></h2>
+          <p class="feature" id="now-feature"></p>
+          <p class="tagline" id="now-tagline"></p>
+          <p class="cost"><b id="now-credits"></b><span id="now-usd"></span></p>
+          <a class="tune-in" id="now-open" href="#">Tune in <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+          <p class="hint">Swipe the dial, scroll it, or use ← →</p>
+        </article>
+      </aside>
+    </div>
+
+    <p class="gpu-note" id="gpu-note" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>
+      <span>The animations draw with <b>WebGPU</b>, which this browser doesn't offer. Every room still plays its sound;
+        for the animations use Chrome on Android and computers, Edge, or Safari 26+ on iPhone, iPad and Mac.</span>
+    </p>
+  </section>
+
+  <section class="rooms" id="rooms" aria-labelledby="rooms-title">
+    <h2 class="section-title" id="rooms-title">Every room in the station</h2>
+    <p class="section-lede">Grouped by what they do. Hover (or focus) a room to watch it for a moment.</p>
+    <div id="families"></div>
+  </section>
+
+  <section class="bill" aria-labelledby="bill-title">
+    <div class="receipt">
+      <h2 id="bill-title">The bill</h2>
+      <p class="receipt-sub">Measured from the account's balance, room by room, on a Creator plan ($22 a month for 121,000 credits).</p>
+      <ol class="lines" id="bill-lines"></ol>
+      <p class="total"><span>Total</span><b id="bill-total"></b></p>
+      <p class="receipt-note" id="bill-note"></p>
+      <p class="receipt-foot">Thank you for listening · Night Radio</p>
+    </div>
+    <div class="off-air">
+      <h2>Off the air</h2>
+      <p>What this plan could not reach through the API, so it is not in the station:</p>
+      <ul>
+        <li><b>Image &amp; Video</b> (pictures and clips from text): the API needs the Pro plan.</li>
+        <li><b>Studio</b> (long audiobook and podcast projects): its API needs ElevenLabs to open it for the account.</li>
+        <li><b>Professional Voice Cloning</b>: needs half an hour or more of recordings and hours of training.</li>
+        <li><b>Phone calls</b> to the agent: need a phone number from a telephone company.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="stitch-line" aria-hidden="true"></div>
+  <p>Sewn by <a href="https://lelelilo.com/?ref=lelelilo-night-radio">Lelelilo-Studios</a>. Voices, sound effects, music, transcripts, dubbing and the agent by ElevenLabs.</p>
+  <p class="small">Every place, character and story here is invented. Fonts under open licences.</p>
+  <p class="small"><a href="#" id="about-link">Care instructions</a> · <a href="https://lelelilo.com/?ref=lelelilo-night-radio">lelelilo.com</a></p>
+</footer>
+
+<dialog id="about" class="tag-dialog" aria-labelledby="about-title">
+  <article class="tag about">
+    <button type="button" class="close" aria-label="Close" data-close><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="law">Care instructions · do not remove this tag</p>
+    <h2 id="about-title">Night Radio</h2>
+    <dl>
+      <dt>What</dt><dd>A showcase of the ElevenLabs API, room by room: speech in many voices and languages, acted lines, whole scenes, new voices from a description, changed and cleaned voices, sound effects, music, transcripts (recorded and live), alignment, dubbing and a voice agent. Every sound in the rooms was made by the API once, and kept.</dd>
+      <dt>Each room</dt><dd>An animation that follows its sound, a play bar, and a care tag with exactly what went in (text, voices, settings), what came back, the API call, and what it cost.</dd>
+      <dt>Cost</dt><dd>Measured from the account's credit balance before and after each room, on a Creator plan. The whole station cost less than a cup of coffee.</dd>
+      <dt>Plays on</dt><dd>Phones and computers. The animations need WebGPU: Chrome on Android and computers, Edge, Safari 26+ on iPhone, iPad and Mac. Sound starts when you press play.</dd>
+      <dt>Care</dt><dd>Best after midnight, with headphones. Do not tumble dry. More from the studio on <a href="https://lelelilo.com/?ref=lelelilo-night-radio">lelelilo.com</a>.</dd>
+    </dl>
+  </article>
+</dialog>
+
+<div class="dive" id="dive" aria-hidden="true">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none" id="dive-svg"></svg>
+</div>
+
+<script src="lelelilo-intro/lelelilo-intro.js"></script>
+<script src="data/rooms.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+ "no": "07",
+ "slug": "07-radio-play",
+ "title": "Radio-Play Booth",
+ "feature": "Text to Dialogue",
+ "public": true,
+ "what": "A whole scene in one request: three voices, stage directions in brackets, timing and interruptions handled by the model. The response also says who speaks when.",
+ "inputs": [
+  {
+   "label": "Model",
+   "value": "Eleven v4 (Text to Dialogue)"
+  },
+  {
+   "label": "Cast",
+   "value": "Mo (Brian), Pip (Jessica), Bram (designed in the Voice Loom)"
+  },
+  {
+   "label": "Script",
+   "value": "Mo: [warmly] And we're back. It's twelve forty on Night Radio, and line two has been blinking for ten minutes. Bram, are you there?\nBram: [clears throat] I'm here, I'm here. Is this the radio? Am I on the radio?\nPip: [whispers] He's on the radio.\nMo: You're on the radio, Bram. What's happening at the lighthouse tonight?\nBram: Well. [sighs] The light went out. Not broken, mind you. It just... stopped. Like it wanted a nap.\nPip: [laughs] A sleepy lighthouse!\nMo: Pip, please. Bram, did you try turning it off and on again?\nBram: [offended] Young man, I have kept that light for forty years. Of course I tried that.\nPip: [excited] Ooh, ooh, I know! Play it a song! Lighthouses love songs.\nBram: [pause] ...Do they?\nMo: [laughs] Pip, cue the lullaby. Bram, hold the phone up to the lamp.\nBram: [far from the phone] It's... it's flickering. It's coming back! Would you look at that!\nPip: [cheering] Yes! The power of radio!\nMo: [softly] There you have it, night owls. Even lighthouses need a song sometimes. Goodnight, Bram.\nBram: [chuckles] Goodnight, you lot. Keep the music coming."
+  }
+ ],
+ "endpoint": "POST /v1/text-to-dialogue/with-timestamps",
+ "snippet": "d = requests.post(\"https://api.elevenlabs.io/v1/text-to-dialogue/with-timestamps\",\n    headers={\"xi-api-key\": KEY},\n    json={\"model_id\": \"eleven_v4\", \"inputs\": [\n        {\"voice_id\": MO, \"text\": \"[warmly] And we're back…\"},\n        {\"voice_id\": BRAM, \"text\": \"[clears throat] I'm here, I'm here.\"}]}).json()\nturns = d[\"voice_segments\"]  # voice_id, start_time_seconds, end_time_seconds",
+ "credits": 437,
+ "usd": 0.08,
+ "made": "2026-10-27"
+}

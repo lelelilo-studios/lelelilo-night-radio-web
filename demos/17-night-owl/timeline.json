@@ -1,0 +1,623 @@
+{
+ "v": 1,
+ "duration": 28.08,
+ "tracks": [
+  {
+   "name": "call",
+   "file": "media/call.mp3",
+   "duration": 28.08,
+   "env_fps": 60,
+   "env": "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",
+   "bands_fps": 30,
+   "bands_n": 16,
+   "bands": "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"
+  }
+ ],
+ "words": [
+  {
+   "w": "Hi.",
+   "t0": 0.28,
+   "t1": 0.64,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Um,",
+   "t0": 1.36,
+   "t1": 1.64,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "hi,",
+   "t0": 2.1,
+   "t1": 2.34,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Night",
+   "t0": 2.44,
+   "t1": 2.6,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Radio.",
+   "t0": 2.68,
+   "t1": 3.12,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "I've",
+   "t0": 4.12,
+   "t1": 4.28,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "never",
+   "t0": 4.34,
+   "t1": 4.52,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "called",
+   "t0": 4.64,
+   "t1": 4.82,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "a",
+   "t0": 4.86,
+   "t1": 4.9,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "radio",
+   "t0": 4.96,
+   "t1": 5.28,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "show",
+   "t0": 5.38,
+   "t1": 5.56,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "before.",
+   "t0": 5.6,
+   "t1": 6.04,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "I'm",
+   "t0": 6.66,
+   "t1": 6.76,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Sophia,",
+   "t0": 6.82,
+   "t1": 7.32,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "I'm",
+   "t0": 7.7,
+   "t1": 7.76,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "a",
+   "t0": 7.8,
+   "t1": 7.84,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "night",
+   "t0": 7.9,
+   "t1": 8.1,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "nurse,",
+   "t0": 8.14,
+   "t1": 8.5,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "and",
+   "t0": 8.66,
+   "t1": 8.92,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "I",
+   "t0": 9.02,
+   "t1": 9.08,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "just",
+   "t0": 9.14,
+   "t1": 9.32,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "finished",
+   "t0": 9.38,
+   "t1": 9.66,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "my",
+   "t0": 9.7,
+   "t1": 9.82,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "shift.",
+   "t0": 9.88,
+   "t1": 10.26,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "It's",
+   "t0": 11.8,
+   "t1": 12.0,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "raining,",
+   "t0": 12.08,
+   "t1": 12.54,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "the",
+   "t0": 12.9,
+   "t1": 13.04,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "bus",
+   "t0": 13.08,
+   "t1": 13.3,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "is",
+   "t0": 13.36,
+   "t1": 13.48,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "late,",
+   "t0": 13.54,
+   "t1": 13.8,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "and",
+   "t0": 14.12,
+   "t1": 14.2,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "honestly,",
+   "t0": 14.26,
+   "t1": 14.82,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "your",
+   "t0": 15.4,
+   "t1": 15.56,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "show",
+   "t0": 15.6,
+   "t1": 15.78,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "is",
+   "t0": 15.82,
+   "t1": 15.92,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "the",
+   "t0": 15.96,
+   "t1": 16.18,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "only",
+   "t0": 16.3,
+   "t1": 16.6,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "thing",
+   "t0": 16.66,
+   "t1": 16.86,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "keeping",
+   "t0": 16.9,
+   "t1": 17.16,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "me",
+   "t0": 17.2,
+   "t1": 17.3,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "awake.",
+   "t0": 17.36,
+   "t1": 17.76,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Could",
+   "t0": 18.42,
+   "t1": 18.54,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "you",
+   "t0": 18.58,
+   "t1": 18.66,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "play",
+   "t0": 18.7,
+   "t1": 18.86,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "something",
+   "t0": 18.9,
+   "t1": 19.18,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "soft?",
+   "t0": 19.3,
+   "t1": 19.72,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Something",
+   "t0": 20.24,
+   "t1": 20.52,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "for",
+   "t0": 20.56,
+   "t1": 20.7,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "everyone",
+   "t0": 20.76,
+   "t1": 21.08,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "who's",
+   "t0": 21.12,
+   "t1": 21.28,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "still",
+   "t0": 21.34,
+   "t1": 21.52,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "working",
+   "t0": 21.56,
+   "t1": 21.9,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "tonight?",
+   "t0": 21.94,
+   "t1": 22.32,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Okay,",
+   "t0": 23.5,
+   "t1": 23.8,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "thank",
+   "t0": 24.5,
+   "t1": 24.7,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "you.",
+   "t0": 24.76,
+   "t1": 24.9,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Bye.",
+   "t0": 25.38,
+   "t1": 25.64,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Oh,",
+   "t0": 26.14,
+   "t1": 26.26,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "wait.",
+   "t0": 26.48,
+   "t1": 26.74,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "Thank",
+   "t0": 27.22,
+   "t1": 27.46,
+   "track": "call",
+   "spk": null
+  },
+  {
+   "w": "you.",
+   "t0": 27.54,
+   "t1": 27.7,
+   "track": "call",
+   "spk": null
+  }
+ ],
+ "segments": [],
+ "events": [
+  {
+   "t": 2.318,
+   "kind": "partial",
+   "label": "Hi."
+  },
+  {
+   "t": 2.318,
+   "kind": "partial",
+   "label": "Hi. Um..."
+  },
+  {
+   "t": 3.022,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night"
+  },
+  {
+   "t": 4.128,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio."
+  },
+  {
+   "t": 5.136,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never"
+  },
+  {
+   "t": 6.04,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show"
+  },
+  {
+   "t": 7.047,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before."
+  },
+  {
+   "t": 7.951,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia."
+  },
+  {
+   "t": 8.859,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia. I'm a night nurse."
+  },
+  {
+   "t": 9.864,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just"
+  },
+  {
+   "t": 10.868,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift."
+  },
+  {
+   "t": 11.974,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia. I'm a night nurse, and I just finished my shift."
+  },
+  {
+   "t": 12.762,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia. I'm a night nurse, and I just finished my shift. It's rain"
+  },
+  {
+   "t": 13.81,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus"
+  },
+  {
+   "t": 15.116,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia. I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and"
+  },
+  {
+   "t": 15.722,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia. I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly..."
+  },
+  {
+   "t": 16.733,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the"
+  },
+  {
+   "t": 17.538,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping"
+  },
+  {
+   "t": 18.548,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake."
+  },
+  {
+   "t": 19.555,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play some"
+  },
+  {
+   "t": 20.561,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft?"
+  },
+  {
+   "t": 21.367,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft, something for every"
+  },
+  {
+   "t": 22.373,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working"
+  },
+  {
+   "t": 23.375,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight?"
+  },
+  {
+   "t": 24.179,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay."
+  },
+  {
+   "t": 25.187,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay, thank"
+  },
+  {
+   "t": 26.195,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay, thank you. Bye."
+  },
+  {
+   "t": 27.201,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay, thank you. Bye. Oh, wait."
+  },
+  {
+   "t": 28.206,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay, thank you. Bye. Oh, wait. Thank you"
+  },
+  {
+   "t": 29.01,
+   "kind": "partial",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay, thank you. Bye. Oh, wait. Thank you."
+  },
+  {
+   "t": 29.802,
+   "kind": "committed",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay, thank you. Bye. Oh, wait. Thank you."
+  },
+  {
+   "t": 29.861,
+   "kind": "committed_ts",
+   "label": "Hi. Um, hi, Night Radio. I've never called a radio show before. I'm Sophia, I'm a night nurse, and I just finished my shift. It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight? Okay, thank you. Bye. Oh, wait. Thank you."
+  },
+  {
+   "t": 30.49,
+   "kind": "committed_ts",
+   "label": ""
+  },
+  {
+   "t": 30.496,
+   "kind": "committed",
+   "label": ""
+  }
+ ],
+ "extra": {
+  "text": "[sleepy] Hi... um, hi, Night Radio. I've never called a radio show before. I'm Sofía, I'm a night nurse, and I just finished my shift. [sighs] It's raining, the bus is late, and honestly, your show is the only thing keeping me awake. Could you play something soft? Something for everyone who's still working tonight. [laughs softly] Okay. Thank you. Bye. Oh, wait. Thank you!",
+  "voice": "Sarah",
+  "note": "events[].t = seconds after the audio started streaming, when the transcript arrived"
+ }
+}

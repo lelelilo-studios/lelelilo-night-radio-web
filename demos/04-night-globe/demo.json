@@ -1,0 +1,63 @@
+{
+ "no": "04",
+ "slug": "04-night-globe",
+ "title": "Night Globe",
+ "feature": "Text to Speech · ten languages",
+ "public": true,
+ "what": "A Chilean narrator from the Voice Library says goodnight in ten languages. The model keeps her voice and moves it into each language.",
+ "inputs": [
+  {
+   "label": "Voice",
+   "value": "Francisca (Voice Library, Chilean Spanish)"
+  },
+  {
+   "label": "Model",
+   "value": "Eleven v4 with a language code per line"
+  },
+  {
+   "label": "Spanish",
+   "value": "Buenas noches desde Night Radio. Donde sea que estés esta noche, la misma luna te está escuchando."
+  },
+  {
+   "label": "English",
+   "value": "Goodnight from Night Radio. Wherever you are tonight, the same moon is listening."
+  },
+  {
+   "label": "Japanese",
+   "value": "ナイトラジオから、おやすみなさい。今夜どこにいても、同じ月があなたの声を聞いています。"
+  },
+  {
+   "label": "Hindi",
+   "value": "नाइट रेडियो की ओर से शुभ रात्रि। आज रात आप जहाँ भी हों, वही चाँद आपको सुन रहा है।"
+  },
+  {
+   "label": "French",
+   "value": "Bonne nuit de la part de Night Radio. Où que vous soyez ce soir, la même lune vous écoute."
+  },
+  {
+   "label": "German",
+   "value": "Gute Nacht von Night Radio. Wo auch immer du heute Nacht bist, derselbe Mond hört dir zu."
+  },
+  {
+   "label": "Portuguese",
+   "value": "Boa noite da Night Radio. Onde quer que você esteja esta noite, a mesma lua está ouvindo."
+  },
+  {
+   "label": "Arabic",
+   "value": "تصبحون على خير من نايت راديو. أينما كنتم الليلة، القمر نفسه يستمع إليكم."
+  },
+  {
+   "label": "Korean",
+   "value": "나이트 라디오에서 전하는 굿나잇 인사. 오늘 밤 어디에 있든, 같은 달이 당신의 이야기를 듣고 있어요."
+  },
+  {
+   "label": "Italian",
+   "value": "Buonanotte da Night Radio. Ovunque tu sia stanotte, la stessa luna ti sta ascoltando."
+  }
+ ],
+ "endpoint": "POST /v1/text-to-speech/{voice_id}",
+ "snippet": "requests.post(f\"https://api.elevenlabs.io/v1/text-to-speech/{voice}\",\n    headers={\"xi-api-key\": KEY},\n    json={\"model_id\": \"eleven_v4\", \"language_code\": \"ja\",\n          \"text\": \"ナイトラジオから、おやすみなさい。\"})",
+ "credits": 346,
+ "usd": 0.06,
+ "made": "2026-10-27"
+}

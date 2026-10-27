@@ -1,0 +1,27 @@
+{
+ "no": "06",
+ "slug": "06-bouncing-moon",
+ "title": "Bouncing Moon",
+ "feature": "Text to Speech · word timestamps",
+ "public": true,
+ "what": "Speech that comes back with the start and end time of every character, so the page always knows which word is being spoken.",
+ "inputs": [
+  {
+   "label": "Voice",
+   "value": "Lily (built-in)"
+  },
+  {
+   "label": "Model",
+   "value": "Eleven v4"
+  },
+  {
+   "label": "Story",
+   "value": "Once, on a very quiet night, the moon got tired of climbing. So it sat down on the roof of the radio station, right next to the antenna, and listened. It heard the kettle humming. It heard a cat purring on the windowsill. It heard the night host whisper, goodnight, little island. And the moon, which had never stayed anywhere for long, decided that this roof was the coziest place in the whole sky. So if your night feels a little brighter, now you know why."
+  }
+ ],
+ "endpoint": "POST /v1/text-to-speech/{voice_id}/with-timestamps",
+ "snippet": "d = requests.post(f\"https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps\",\n    headers={\"xi-api-key\": KEY},\n    json={\"text\": STORY, \"model_id\": \"eleven_v4\"}).json()\naudio = base64.b64decode(d[\"audio_base64\"])\ntimes = d[\"alignment\"][\"character_start_times_seconds\"]",
+ "credits": 202,
+ "usd": 0.04,
+ "made": "2026-10-27"
+}

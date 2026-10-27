@@ -1,0 +1,27 @@
+{
+ "no": "02",
+ "slug": "02-choir-loft",
+ "title": "Choir Loft",
+ "feature": "Text to Speech · voice gallery",
+ "public": true,
+ "what": "Sixteen voices reading a line each: twelve of the built-in voices and four Spanish voices from the Voice Library. Same model, very different people.",
+ "inputs": [
+  {
+   "label": "Model",
+   "value": "Eleven v4"
+  },
+  {
+   "label": "Voices",
+   "value": "George, Lily, Callum, Laura, Brian, Charlie, Alice, Daniel, Harry, Jessica, Bill, Matilda, Francisca, Alberto Rodríguez, Silvana, July"
+  },
+  {
+   "label": "Lines",
+   "value": "one line each, written for its voice (English and Spanish)"
+  }
+ ],
+ "endpoint": "POST /v1/text-to-speech/{voice_id}",
+ "snippet": "for voice in voices:\n    audio = requests.post(f\"https://api.elevenlabs.io/v1/text-to-speech/{voice.id}\",\n        headers={\"xi-api-key\": KEY},\n        json={\"text\": voice.line, \"model_id\": \"eleven_v4\"}).content",
+ "credits": 504,
+ "usd": 0.09,
+ "made": "2026-10-27"
+}

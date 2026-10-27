@@ -1,0 +1,23 @@
+{
+ "no": "16",
+ "slug": "16-tape-measure",
+ "title": "Tape Measure",
+ "feature": "Forced Alignment",
+ "public": true,
+ "what": "You already have the words; Forced Alignment finds exactly when each one is sung or spoken. Here: the lyrics of the Jukebox song, lined up with the singing.",
+ "inputs": [
+  {
+   "label": "Audio",
+   "value": "“Night Radio”, the song from the Jukebox"
+  },
+  {
+   "label": "Text",
+   "value": "The kettle hums on the windowsill\nthe island sleeps and the sea is still\na little light on the radio\nsays someone's up, so you're not alone\nNight Radio, Night Radio\nsoft as a pillow, slow as the snow\nturn the dial and let it glow\nNight Radio\ngoodnight, goodnight"
+  }
+ ],
+ "endpoint": "POST /v1/forced-alignment",
+ "snippet": "d = requests.post(\"https://api.elevenlabs.io/v1/forced-alignment\",\n    headers={\"xi-api-key\": KEY},\n    files={\"file\": open(\"song.mp3\", \"rb\")}, data={\"text\": LYRICS}).json()\nfor w in d[\"words\"]:\n    print(w[\"start\"], w[\"end\"], w[\"text\"])",
+ "credits": 20,
+ "usd": 0.0,
+ "made": "2026-10-27"
+}

@@ -1,0 +1,57 @@
+{
+ "no": "01",
+ "slug": "01-relay-race",
+ "title": "Relay Race",
+ "feature": "Text to Speech · seven models",
+ "public": true,
+ "what": "The same paragraph read by every text-to-speech model, timed from this PC: how soon the first sound arrives, how long the whole clip takes, and how each one sounds.",
+ "inputs": [
+  {
+   "label": "Text",
+   "value": "Good evening, night owls. It's a quarter past midnight on Night Radio. The moon is stuck behind the water tower again, the kettle is on, and a very confused lighthouse keeper is waiting on line two. Stay close."
+  },
+  {
+   "label": "Voice",
+   "value": "George (built-in)"
+  },
+  {
+   "label": "Models",
+   "value": "Eleven v4, Eleven v4 Turbo, Eleven v3, Eleven v3 Conversational, Multilingual v2, Flash v2.5, Turbo v2.5"
+  }
+ ],
+ "endpoint": "POST /v1/text-to-speech/{voice_id}/stream",
+ "snippet": "r = requests.post(f\"https://api.elevenlabs.io/v1/text-to-speech/{voice}/stream\",\n    headers={\"xi-api-key\": KEY}, stream=True,\n    json={\"text\": TEXT, \"model_id\": \"eleven_flash_v2_5\"})\nfor chunk in r.iter_content(2048):\n    player.feed(chunk)  # sound starts with the first chunk",
+ "results": [
+  {
+   "label": "Eleven v4",
+   "value": "first sound 760 ms · 13.48 s of speech"
+  },
+  {
+   "label": "Eleven v4 Turbo",
+   "value": "first sound 340 ms · 13.71 s of speech"
+  },
+  {
+   "label": "Eleven v3",
+   "value": "first sound 578 ms · 14.52 s of speech"
+  },
+  {
+   "label": "Eleven v3 Conversational",
+   "value": "first sound 357 ms · 13.17 s of speech"
+  },
+  {
+   "label": "Multilingual v2",
+   "value": "first sound 2216 ms · 12.77 s of speech"
+  },
+  {
+   "label": "Flash v2.5",
+   "value": "first sound 362 ms · 13.19 s of speech"
+  },
+  {
+   "label": "Turbo v2.5",
+   "value": "first sound 505 ms · 12.43 s of speech"
+  }
+ ],
+ "credits": 460,
+ "usd": 0.08,
+ "made": "2026-10-27"
+}

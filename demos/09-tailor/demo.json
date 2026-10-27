@@ -1,0 +1,35 @@
+{
+ "no": "09",
+ "slug": "09-tailor",
+ "title": "Tailor's Mannequin",
+ "feature": "Voice Remixing",
+ "public": true,
+ "what": "An existing voice changed by describing the change: age, accent, energy. The voice stays recognisably Bram's while the description reshapes it.",
+ "inputs": [
+  {
+   "label": "Voice",
+   "value": "Bram (designed in the Voice Loom)"
+  },
+  {
+   "label": "Line",
+   "value": "Forty years I've kept this light, and every night the sea tells me a new story. Tonight it says a storm is coming, so put the kettle on and stay in."
+  },
+  {
+   "label": "Older",
+   "value": "Make him much older, frail and whispery, as if speaking quietly from an armchair by the fire."
+  },
+  {
+   "label": "Irish",
+   "value": "Give him a warm Irish accent and a cheerful, sing-song energy."
+  },
+  {
+   "label": "Young",
+   "value": "Make him a young man in his twenties: the same gravelly tone, but faster and full of energy."
+  }
+ ],
+ "endpoint": "POST /v1/text-to-voice/{voice_id}/remix",
+ "snippet": "d = requests.post(f\"https://api.elevenlabs.io/v1/text-to-voice/{bram}/remix\",\n    headers={\"xi-api-key\": KEY},\n    json={\"voice_description\": \"Give him a warm Irish accent.\", \"text\": LINE}).json()\naudio = base64.b64decode(d[\"previews\"][0][\"audio_base_64\"])",
+ "credits": 509,
+ "usd": 0.09,
+ "made": "2026-10-27"
+}

@@ -1,0 +1,41 @@
+{
+ "no": "15",
+ "slug": "15-typewriter",
+ "title": "Typewriter",
+ "feature": "Speech to Text",
+ "public": true,
+ "what": "Audio in, text out: every word with its time, which speaker said it, and sounds like laughter tagged in brackets. The second clip is the noisy traffic report from the Sieve.",
+ "inputs": [
+  {
+   "label": "Model",
+   "value": "Scribe v2"
+  },
+  {
+   "label": "Options",
+   "value": "diarize (who spoke), tag audio events, word timestamps"
+  },
+  {
+   "label": "Audio",
+   "value": "The radio play (three speakers)"
+  },
+  {
+   "label": "Audio",
+   "value": "The traffic report, in the noise"
+  }
+ ],
+ "endpoint": "POST /v1/speech-to-text",
+ "snippet": "d = requests.post(\"https://api.elevenlabs.io/v1/speech-to-text\",\n    headers={\"xi-api-key\": KEY},\n    files={\"file\": open(\"scene.mp3\", \"rb\")},\n    data={\"model_id\": \"scribe_v2\", \"diarize\": \"true\", \"tag_audio_events\": \"true\"}).json()\nfor w in d[\"words\"]:\n    print(w[\"speaker_id\"], w[\"start\"], w[\"text\"])",
+ "results": [
+  {
+   "label": "The radio play (three speakers)",
+   "value": "And we're back. It's twelve forty on Night Radio, and line two has been blinking for ten minutes. Brom, are you there? [clears throat] I'm here. I'm here. Is this the radio? Am I on the radio? He's on the radio. You're on the radio, Brom. What's happening at the lighthouse tonight? Well, [sighs] the light went out. Not broken, mind you. It just stopped, like it wanted a nap. [laughs] A sleepy lighthouse. Pip, please. Brom, did you try turning it off and on again? Young man, I have kept that light for forty years. Of course I tried that. Ooh, ooh, I know. Play it a song. Lighthouses love songs. Do they? [laughs] Pip, cue the lullaby. Brom, hold the phone up to the lamp. It's, it's flickering. It's coming back. Would you look at that? [laughs] Yes. The power of radio. There you have it, night owls. Even lighthouses need a song sometimes. Good night, Brom. [laughs] Good night, you lot. Keep the music coming."
+  },
+  {
+   "label": "The traffic report, in the noise",
+   "value": "Good evening. Here's the island traffic report. The night ferry is running ten minutes late because a seal is sleeping on the bow. The hill road is clear apart from one very slow tortoise near the bakery. And at the lighthouse, Graham reports one flickering lamp, now fixed with music. Drunk children again."
+  }
+ ],
+ "credits": 31,
+ "usd": 0.01,
+ "made": "2026-10-27"
+}

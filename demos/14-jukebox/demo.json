@@ -1,0 +1,35 @@
+{
+ "no": "14",
+ "slug": "14-jukebox",
+ "title": "Jukebox",
+ "feature": "Music",
+ "public": true,
+ "what": "Three pieces of music composed section by section: a jingle with a choir, a lo-fi instrumental, and a song with sung lyrics, verse and chorus.",
+ "inputs": [
+  {
+   "label": "Model",
+   "value": "Eleven Music v2.5"
+  },
+  {
+   "label": "Station jingle",
+   "value": "Jingle (20 s) → Sting (10 s)"
+  },
+  {
+   "label": "Midnight lo-fi (instrumental)",
+   "value": "Intro (12 s) → Groove (36 s) → Outro (12 s)"
+  },
+  {
+   "label": "Night Radio (song)",
+   "value": "Intro (8 s) → Verse (20 s) → Chorus (20 s) → Outro (12 s)"
+  },
+  {
+   "label": "Lyrics",
+   "value": "The kettle hums on the windowsill\nthe island sleeps and the sea is still\na little light on the radio\nsays someone's up, so you're not alone\nNight Radio, Night Radio\nsoft as a pillow, slow as the snow\nturn the dial and let it glow\nNight Radio\ngoodnight, goodnight"
+  }
+ ],
+ "endpoint": "POST /v1/music",
+ "snippet": "audio = requests.post(\"https://api.elevenlabs.io/v1/music\",\n    headers={\"xi-api-key\": KEY},\n    json={\"model_id\": \"music_v2_5\", \"composition_plan\": {\"chunks\": [\n        {\"text\": \"[Verse]\\nThe kettle hums on the windowsill…\", \"duration_ms\": 20000,\n         \"positive_styles\": [\"indie folk lullaby\", \"soft female vocal\"]},\n        {\"text\": \"[Chorus]\\nNight Radio, Night Radio…\", \"duration_ms\": 20000,\n         \"positive_styles\": [\"harmonies\", \"gentle lift\"]}]}}).content",
+ "credits": 2106,
+ "usd": 0.38,
+ "made": "2026-10-27"
+}

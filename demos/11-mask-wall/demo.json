@@ -1,0 +1,31 @@
+{
+ "no": "11",
+ "slug": "11-mask-wall",
+ "title": "Mask Wall",
+ "feature": "Voice Changer",
+ "public": true,
+ "what": "One performance (its timing, whispers, laughs and shouts) carried into three other voices. The words and the acting stay; only the voice changes.",
+ "inputs": [
+  {
+   "label": "Performance",
+   "value": "[excited] Ladies and gentlemen, night owls of all ages! [whispers] Tonight, and only tonight... [shouting] the moon is taking requests! [laughs] So call in, sing loud, [whispers] and try not to wake the neighbours. [normal] Lines are open... now!"
+  },
+  {
+   "label": "Performed by",
+   "value": "Charlie (built-in), with Eleven v4"
+  },
+  {
+   "label": "Re-voiced as",
+   "value": "Bram (designed), Tik (designed), Lily (built-in)"
+  },
+  {
+   "label": "Model",
+   "value": "Multilingual speech-to-speech v2"
+  }
+ ],
+ "endpoint": "POST /v1/speech-to-speech/{voice_id}",
+ "snippet": "audio = requests.post(f\"https://api.elevenlabs.io/v1/speech-to-speech/{voice}\",\n    headers={\"xi-api-key\": KEY},\n    files={\"audio\": open(\"performance.mp3\", \"rb\")},\n    data={\"model_id\": \"eleven_multilingual_sts_v2\"}).content",
+ "credits": 585,
+ "usd": 0.11,
+ "made": "2026-10-27"
+}

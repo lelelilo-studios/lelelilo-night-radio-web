@@ -1,0 +1,59 @@
+{
+ "no": "13",
+ "slug": "13-foley-shelf",
+ "title": "Foley Shelf",
+ "feature": "Sound Effects",
+ "public": true,
+ "what": "Ten sounds made from a sentence each, from rain to a monster's yawn. The fireplace was asked for as a loop, so it plays forever without a seam.",
+ "inputs": [
+  {
+   "label": "Model",
+   "value": "Sound Effects v2"
+  },
+  {
+   "label": "Rain on a tin roof",
+   "value": "Heavy rain drumming on a tin roof, distant rolling thunder (6 s)"
+  },
+  {
+   "label": "Sci-fi door",
+   "value": "A heavy sci-fi sliding door opening with a hydraulic hiss and a metallic clunk (3 s)"
+  },
+  {
+   "label": "Footsteps in snow",
+   "value": "Slow footsteps crunching through deep fresh snow, close up (5 s)"
+  },
+  {
+   "label": "Radio tuning",
+   "value": "An old valve radio being tuned between stations: static, whistles and fragments of distant music (5 s)"
+  },
+  {
+   "label": "Fireplace (loop) · loop",
+   "value": "A cozy fireplace crackling gently, warm and steady (8 s)"
+  },
+  {
+   "label": "Cat purring",
+   "value": "A cat purring very close to the microphone, content and slow (5 s)"
+  },
+  {
+   "label": "Wind chimes",
+   "value": "Glass wind chimes in a gentle night breeze (5 s)"
+  },
+  {
+   "label": "Owl at night",
+   "value": "A tawny owl hooting twice in a quiet forest at night, crickets behind (5 s)"
+  },
+  {
+   "label": "Click and chime",
+   "value": "A soft user interface click followed by a gentle bright confirmation chime (2 s)"
+  },
+  {
+   "label": "Monster yawn",
+   "value": "A huge friendly monster yawning in a cave, deep and rumbling, with a little smack of the lips (4 s)"
+  }
+ ],
+ "endpoint": "POST /v1/sound-generation",
+ "snippet": "audio = requests.post(\"https://api.elevenlabs.io/v1/sound-generation\",\n    headers={\"xi-api-key\": KEY},\n    json={\"text\": \"A cozy fireplace crackling gently\", \"duration_seconds\": 8,\n          \"loop\": True, \"model_id\": \"eleven_text_to_sound_v2\"}).content",
+ "credits": 484,
+ "usd": 0.09,
+ "made": "2026-10-27"
+}
